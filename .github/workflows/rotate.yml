@@ -28,12 +28,12 @@ jobs:
       - name: Render a random quote
         run: python3 render.py
 
-      - name: Commit and push if changed
+            - name: Commit and push if changed
         run: |
           git config user.name "quote-bot"
           git config user.email "actions@users.noreply.github.com"
-          if ! git diff --quiet -- quote.png; then
-            git add quote.png
+          git add quote.png
+          if ! git diff --cached --quiet; then
             git commit -m "Rotate quote"
             git push
           else
